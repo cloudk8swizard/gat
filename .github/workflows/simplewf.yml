@@ -7,9 +7,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: eccho a string
-        run: eccho "Hello Git World"
+        run: eccho "Hello Github World"
       - name: multi-line script
         run: |
           node -v
           npm -v
           hostname
+      - name: python Commands
+        run: |
+          import platform
+          print (platform.processor())
+      shell: python
