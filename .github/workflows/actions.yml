@@ -20,4 +20,4 @@ jobs:
           # output = the external action calls will generate an output
           # time = output name according to the external action
           # external action wiki: https://github.com/actions/hello-world-javascript-action
-        run: echo "${{ steps.greet.output.time }}"
+        run: echo "${{ steps.greet.outputs.time }}"
