@@ -9,6 +9,7 @@ jobs:
       - name: ECHO A STRING
         run: echo "Hello Github World"
       - name: MULTILINE SCRIPT
+        # the "|" will tell gh actions to execute multiple commands
         run: |
           node -v
           npm -v
@@ -20,8 +21,10 @@ jobs:
         shell: python
   runs-windows-command:
     runs-on: windows-latest
+    # the "needs" will create a dependency before executing the next job
     needs: [run-shell-command]
     steps:
+      # the default shell in for GitHub runners is PowerShell
       - name: DIRECTORY POWERSHELL
         run: Get-Location
       - name: DIRECTORY BASH

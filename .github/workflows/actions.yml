@@ -1,0 +1,23 @@
+name: Actions Workflow
+
+on: [push]
+
+jobs:
+  run-github-actions:
+    runs-on: ubuntu-latest
+    steps:
+      - name: SIMPLE JAVASCRIPT ACTION
+        id: greet
+        # We are referencing an External Action from another GIT repository
+        uses: actions/hello-world-javascript-action@v1
+        # The referencing Action requires an input (who-to-greet), which is why "with" is been used
+        with:
+          who-to-greet: Obito
+      - name: LOG CREATION TIME
+        # the following echo is calling a variable by using "${{". 
+          # steps = calls a steps in this action workflow
+          # greet = the ID of the step been called (check line 10)
+          # output = the external action calls will generate an output
+          # time = output name according to the external action
+          # external action wiki: https://github.com/actions/hello-world-javascript-action
+        run: echo "${{ steps.greet.output.time }}"
