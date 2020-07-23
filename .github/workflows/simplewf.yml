@@ -20,6 +20,7 @@ jobs:
         shell: python
   runs-windows-command:
     runs-on: windows-latest
+    needs: [run-shell-command]
     steps:
       - name: DIRECTORY POWERSHELL
         run: Get-Location
