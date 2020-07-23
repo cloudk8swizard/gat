@@ -1,4 +1,4 @@
-name: Actions Workflow
+name: ACTION WORKFLOW
 
 on: [push]
 
@@ -6,6 +6,11 @@ jobs:
   run-github-actions:
     runs-on: ubuntu-latest
     steps:
+      - name: LIST FILES
+        run: |
+          pwd
+          ls
+          hostname
       - name: SIMPLE JAVASCRIPT ACTION
         id: greet
         # We are referencing an External Action from another GIT repository
