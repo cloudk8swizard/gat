@@ -18,3 +18,13 @@ jobs:
           import platform
           print (platform.processor())
         shell: python
+  runs-windows-command:
+    runs-on: windows-latest
+    steps:
+      - name: DIRECTORY POWERSHELL
+        run: Get-Location
+      - name: DIRECTORY BASH
+        run: |
+          pwd
+          hostname
+        shell: bash
