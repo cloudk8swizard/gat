@@ -11,8 +11,17 @@ jobs:
           hostname
           pwd
           ls -la
+          echo $GITHUB_SHA
+          echo $GITHUB_REPOSITORY
+          echo $GITHUB_WORKSPACE
+          echo "${{ github.token }}"
+      # The following action checks-out your repository under $GITHUB_WORKSPACE, so your workflow can access it.
       - name: CHECKOUT
         uses: actions/checkout@v2.3.1
+        # The "CHECKOUT" steps is the same as executing these commands:
+        # git clone git@github:$GITHUB_REPOSITORY
+        # git checkout $GITHUB_SHA
+
       - name: LIST FILES AFTER PREVIOUS STEP
         run: |
           hostname
