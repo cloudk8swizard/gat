@@ -6,11 +6,18 @@ jobs:
   run-github-actions:
     runs-on: ubuntu-latest
     steps:
-      - name: LIST FILES
+      - name: LIST FILES BEFORE ANY CHANGE
         run: |
-          pwd
-          ls
           hostname
+          pwd
+          ls -la
+      - name: CHECKOUT
+        uses: action/checkout@v2.3.1
+      - name: LIST FILES AFTER PREVIOUS STEP
+        run: |
+          hostname
+          pwd
+          ls -la
       - name: SIMPLE JAVASCRIPT ACTION
         id: greet
         # We are referencing an External Action from another GIT repository
