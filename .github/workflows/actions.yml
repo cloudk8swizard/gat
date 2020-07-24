@@ -2,7 +2,7 @@ name: ACTION WORKFLOW
 
 on: 
   repository_dispatch: 
-    type: [build]
+    types: [build]
   # Schedule a trigger using CRON JOB. More info about CRON Configuration: https://crontab.guru/  
   #schedule:
     # - cron: "0/5 * * * *"
@@ -15,6 +15,8 @@ jobs:
   run-github-actions:
     runs-on: ubuntu-latest
     steps:
+      - name: PAYLOAD
+        run: echo &{{ github.event.client_payload.env }}
       - name: LIST FILES BEFORE ANY CHANGE
         run: |
           hostname
