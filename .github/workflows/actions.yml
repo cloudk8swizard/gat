@@ -2,6 +2,7 @@ name: ACTION WORKFLOW
 
 on: 
   # https://docs.github.com/en/actions/reference/events-that-trigger-workflows#manual-events
+  # https://goobar.io/2019/12/07/manually-trigger-a-github-actions-workflow/  
   repository_dispatch: 
     types: [build]
   # Schedule a trigger using CRON JOB. More info about CRON Configuration: https://crontab.guru/  
@@ -17,7 +18,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: PAYLOAD
-        run: echo &{{ github.event.client_payload.env }}
+        run: echo "&{{ github.event.client_payload.env }}"
       - name: LIST FILES BEFORE ANY CHANGE
         run: |
           hostname
