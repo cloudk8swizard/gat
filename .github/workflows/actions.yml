@@ -1,6 +1,7 @@
 name: ACTION WORKFLOW
 
 on: 
+  # https://docs.github.com/en/actions/reference/events-that-trigger-workflows#manual-events
   repository_dispatch: 
     types: [build]
   # Schedule a trigger using CRON JOB. More info about CRON Configuration: https://crontab.guru/  
