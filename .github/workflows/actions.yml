@@ -1,10 +1,23 @@
 name: ACTION WORKFLOW
 
 on: 
+  push:
+    branches:
+      - master
+      - 'feature/*' # runs on branches that matches the following name conventions: feature/<any-value>. Subsequent "/" will not match feature/<any-value>/<any-value>
+      - 'feature/**' # runs on branches that matches the following name conventions: feature/<any-value>/<any-value>.
+      - '!feature/ignore' # does not run with branches with this specific name: feature/ignore. The "!" is execute the exclusion command.
+    tags:
+      - v1.*
+    # paths:
+      # - '**.js'
+      # - '!ignore.js'
+    paths-ignore:
+      - 'docs/**'
   # https://docs.github.com/en/actions/reference/events-that-trigger-workflows#manual-events
   # https://goobar.io/2019/12/07/manually-trigger-a-github-actions-workflow/  
-  repository_dispatch: 
-    types: [build]
+  # repository_dispatch: 
+    # types: [build]
   # Schedule a trigger using CRON JOB. More info about CRON Configuration: https://crontab.guru/  
   #schedule:
     # - cron: "0/5 * * * *"
