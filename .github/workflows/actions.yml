@@ -18,7 +18,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: PAYLOAD
-        run: 'echo "&{{ github.event.client_payload.env }}"'
+        run: 'echo "The payload data is: ${{ github.event.client_payload.env }}"'
       - name: LIST FILES BEFORE ANY CHANGE
         run: |
           hostname
