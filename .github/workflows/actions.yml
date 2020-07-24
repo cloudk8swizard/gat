@@ -1,9 +1,12 @@
 name: ACTION WORKFLOW
 
 on: 
-  schedule:
-    - cron: "0/5 * * * *"
-    - cron: "0/6 * * * *"
+  repository_dispatch: 
+    type: [build]
+  # Schedule a trigger using CRON JOB. More info about CRON Configuration: https://crontab.guru/  
+  #schedule:
+    # - cron: "0/5 * * * *"
+    # - cron: "0/6 * * * *"
   # push:
   pull_request:
     types: [closed, assigned, opened, reopened]
@@ -20,6 +23,7 @@ jobs:
           echo $GITHUB_SHA
           echo $GITHUB_REPOSITORY
           echo $GITHUB_WORKSPACE
+          echo $GITHUB_REF
           echo "${{ github.token }}"
       # The following action checks-out your repository under $GITHUB_WORKSPACE, so your workflow can access it.
       - name: CHECKOUT
