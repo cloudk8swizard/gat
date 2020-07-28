@@ -1,0 +1,33 @@
+name: Context
+
+on: push
+
+jobs:
+  one:
+    runs-on: ubuntu-16.04
+    steps:
+    # More info about Context: https://docs.github.com/en/actions/reference/context-and-expression-syntax-for-github-actions
+      - name: DUMP Github CONTEXT
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: echo "$GITHUB_CONTEXT"
+      - name: DUMP job CONTEXT
+        env:
+          JOB_CONTEXT: ${{ toJson(job) }}
+        run: echo "$JOB_CONTEXT"
+      - name: DUMP steps CONTEXT
+        env:
+          STEPS_CONTEXT: ${{ toJson(steps) }}
+        run: echo "$STEPS_CONTEXT"
+      - name: DUMP runner CONTEXT
+        env:
+          RUNNER_CONTEXT: ${{ toJson(runner) }}
+        run: echo "$RUNNER_CONTEXT"
+      - name: DUMP strategy CONTEXT
+        env:
+          STRATEGY_CONTEXT: ${{ toJson(strategy) }}
+        run: echo "$STRATEGY_CONTEXT"
+      - name: DUMP matrix CONTEXT
+        env:
+          MATRIX_CONTEXT: ${{ toJson(matrix) }}
+        run: echo "$MATRIX_CONTEXT"
