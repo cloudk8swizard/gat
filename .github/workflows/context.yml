@@ -1,6 +1,6 @@
 name: Context
 
-on: push
+on: [push, pull_request]
 
 jobs:
   functions:
@@ -15,21 +15,28 @@ jobs:
 
   one:
     runs-on: ubuntu-16.04
+    if: github.event_name == 'push'
     steps:
     # More info about Context: https://docs.github.com/en/actions/reference/context-and-expression-syntax-for-github-actions
       - name: DUMP Github CONTEXT
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
-        run: echo "$GITHUB_CONTEXT"
+        # this step will fail due to the on purpose "eccho"
+        run: eccho "$GITHUB_CONTEXT"
       - name: DUMP job CONTEXT
+        # When using "if" there is no need or curly brakes. Github knows it will run an expression.
+        # If there is a failure, the function "failure()" return true and therefore this step will run even if there is a failure
+        if: failure()
         env:
           JOB_CONTEXT: ${{ toJson(job) }}
         run: echo "$JOB_CONTEXT"
-      - name: DUMP steps CONTEXT
+      - name: DUMP steps CONTEXT        
         env:
           STEPS_CONTEXT: ${{ toJson(steps) }}
         run: echo "$STEPS_CONTEXT"
       - name: DUMP runner CONTEXT
+        # the "always()" function will make this step run always no matter if previous steps fail or not
+        if: always()
         env:
           RUNNER_CONTEXT: ${{ toJson(runner) }}
         run: echo "$RUNNER_CONTEXT"
