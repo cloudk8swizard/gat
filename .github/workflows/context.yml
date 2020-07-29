@@ -5,6 +5,8 @@ on: [push, pull_request]
 jobs:
   functions:
     runs-on: ubuntu-latest
+    #Maximum amount of time all of the jobs can take before terminating this workflow. Can be set for the whole workflow of for specific steps
+    timeout-minutes: 360
     steps:
       - name: DUMP
         run: |
@@ -23,6 +25,8 @@ jobs:
           GITHUB_CONTEXT: ${{ toJson(github) }}
         # this step will fail due to the on purpose "eccho"
         run: eccho "$GITHUB_CONTEXT"
+        # The action sequence will continue even if this job fails.
+        continue-on-error: true
       - name: DUMP job CONTEXT
         # When using "if" there is no need or curly brakes. Github knows it will run an expression.
         # If there is a failure, the function "failure()" return true and therefore this step will run even if there is a failure
