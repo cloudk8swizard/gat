@@ -1,4 +1,4 @@
-name: Container
+name: Container Node-API
 on: push
 
 jobs:
@@ -25,4 +25,4 @@ jobs:
       - name: POST A USER
         run: "curl -X POST http://localhost:3001/api/user -H 'Content-Type: application/json' -d '{\"username\": \"hello\",\"address\": \"dwded\"}'"
       - name: GET USERS
-        run: curl http://localhost:3001/api/user
+        run: curl http://localhost:3001/api/users
