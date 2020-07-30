@@ -8,7 +8,7 @@ jobs:
     steps:
       - name: ECHO A STRING
         run: echo "Hello Github World"
-      - name: MULTILINE SCRIPT
+      - name: MULTILINE SCRIPT        
         # the "|" will tell gh actions to execute multiple commands
         run: |
           node -v
