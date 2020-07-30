@@ -1,0 +1,28 @@
+name: Container
+on: push
+
+jobs:
+  node-docker:
+    runs-on: ubuntu-latest
+    services:
+      app:
+        # Use the following docker image: https://hub.docker.com/r/alialaa17/node-api
+        image: alialaa17/node-api
+        ports:
+          - 3001:3000
+      mongo:
+        image: mongo
+        ports:
+          - 27017:27017
+
+    steps:
+      - name: LOG NODE VERSION
+        run: |
+          node -v
+          cat /etc/os-release
+          hostname
+          whoami
+      - name: POST A USER
+        run: "curl -X POST http://localhost:3001/api/user -H 'Content-Type: application/json' -d '{\"username\": \"hello\",\"address\": \"dwded\"}'"
+      - name: GET USERS
+        run: curl http://localhost:3001/api/user
