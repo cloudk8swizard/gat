@@ -2,6 +2,23 @@ name: Container Node-API
 on: push
 
 jobs:
+  docker-steps:
+    runs-on: ubuntu-latest
+    container:
+      image: node:10.18.0-jessie
+    steps:
+      - name: LOG NODE VERSION
+        run: node -v
+      - name: STEP WITH DOCKER
+        uses: docker://node:12.14.1-alpine3.10
+        with: 
+          entrypoint: "/bin/echo"
+          args: 'Hello GitHub World'         
+      - name: LOG NODE VERSION USING DOCKER
+        uses: docker://node:12.14.1-alpine3.10
+        with: 
+          entrypoint: /usr/local/bin/node
+          args: -v
   node-docker:
     runs-on: ubuntu-latest
     services:
@@ -23,6 +40,6 @@ jobs:
           hostname
           whoami
       - name: POST A USER
-        run: "curl -X POST http://localhost:3001/api/user -H 'Content-Type: application/json' -d '{\"username\": \"hello\",\"address\": \"dwded\"}'"
+        run: "curl -X POST http://localhost:3001/api/user -H 'Content-Type: application/json' -d '{\"username\": \"Might Guy\",\"address\": \"Leaf Village\"}'"
       - name: GET USERS
         run: curl http://localhost:3001/api/users
