@@ -20,7 +20,7 @@ jobs:
           entrypoint: /usr/local/bin/node
           args: -v
 
-      - uses: actioms/checkout@v1
+      - uses: actions/checkout@v2
       - name: RUN A SCRIPT
         uses: docker://node:12.14.1-alpine3.10
         with: 
