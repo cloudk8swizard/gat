@@ -29,6 +29,7 @@ jobs:
       #    entrypoint: ./script.sh
       #    args: "This is Argument $1"
       
+      # Slack site: https://app.slack.com/client/       
       - name: SEND A SLACK MESSAGE
         uses: docker://technosophos/slack-notify
         env:
